@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Hola Vue</title>
+</head>
+<body>
+   <div id="app">
+       <div class="container">
+           <h2>Hello {{name}}</h2>
+           <form class="form-inline">
+               <div class="form-group">
+                   <label for="name">Enter your name:</label>
+                   <!-- binded input to 'name' -->
+                   <input v-model="name" type="text" class="form-control" id="name" placeholder="Name">
+               </div>
+           </form>
+           <!-- displays all data within Vue instance filtered through JSON -->
+           <pre>{{ $data }}</pre>
+       </div>
+   </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+   <script>
+       new Vue({
+           el: '#app',
+           data: {
+               //empty variable each binded to input
+               name: '',
+           },
+       })
+   </script>
+</body>
+</html>
