@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Directive v-if with template</title>
+</head>
+<body>
+   <div id="app">
+       <div class="container">
+           <template v-if="!message">
+               <h1>¡Debes enviar un mensaje de ayuda!</h1>
+               <p>¡Envia un mensajero inmediatamente!</p>
+               <p>¡Al cercano Reino de Corazones!</p>
+           </template>
+           <textarea v-model="message"></textarea>
+           <button v-show="message">
+               ¡Enviar mensaje de ayuda a los aliados!
+           </button>
+           <!-- displays all data within Vue instance filtered through JSON -->
+           <pre>{{ $data }}</pre>
+       </div>
+   </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+   <script>
+       new Vue({
+           el: '#app',
+           data: {
+               //empty variable each binded to input
+               message: '¡Nuestro Rey está muerto! ¡Enviar ayuda!'
+           },
+       })
+   </script>
+</body>
+</html>

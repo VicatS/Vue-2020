@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Directive v-else</title>
+</head>
+<body>
+<div id="app">
+    <div class="container">
+        <h1 v-if="!message">¡Debes enviar un mensaje de ayuda!</h1>
+        <h2 v-else>¡Has enviado un mensaje!</h2>
+        <textarea v-model="message"></textarea>
+        <button v-show="message">
+            ¡Enviar mensaje de ayuda a los aliados!
+        </button>
+        <pre>
+               {{ $data }}
+           </pre>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            //empty variable each binded to input
+            message: '¡Nuestro Rey está muerto! ¡Enviar ayuda!',
+        },
+    })
+</script>
+</body>
+</html>
