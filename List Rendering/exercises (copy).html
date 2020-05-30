@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Exercises</title>
+</head>
+<body>
+<div id="app">
+    <div class="container">
+        <div v-if="gender === 'female' || gender === 'male'">
+            <h1>Hello,
+                <span v-show="gender === 'female'">
+                Miss {{ name }}
+            </span>
+                <span v-show="gender === 'male'">
+                Mister {{ name }}
+            </span>
+            </h1>
+        </div>
+        <h2 v-else>So you can't decide. Fine!</h2>
+        <label for="">Ingresa tu género</label>
+        <input class="form-control"
+               v-model="gender">
+        <label for="">Ingresa tu nombre</label>
+        <input class="form-control"
+               v-model="name">
+        <hr>
+        <pre>
+               {{ $data }}
+           </pre>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            //empty variable each binded to input
+            gender: 'female',
+            name: 'Universe'
+        },
+    })
+</script>
+</body>
+</html>

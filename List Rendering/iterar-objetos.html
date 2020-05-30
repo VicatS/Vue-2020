@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Iterar a Través de un Arreglo de Objetos</title>
+</head>
+<body>
+<div class="container">
+    <h2>¡!Escuchemos algunas historias</h2>
+    <div>
+        <ul class="list-group">
+            <li class="list-group-item"
+                v-for="(story, index) in stories">
+               {{ index }}. {{ story.writer }} dijo: {{ story.plot }}
+            </li>
+        </ul>
+    </div>
+    <pre>
+        {{ $data }}
+    </pre>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '.container',
+        data: {
+            stories: [
+                {
+                    plot: "¡Estrellé mi auto hoy!",
+                    writer: "Victor"
+                },
+                {
+                    plot: "¡Ayer, alguien robó mi bolso!",
+                    writer: "Geovana"
+                },
+                {
+                    plot: "Alguien se comió mi chocolate...",
+                    writer: "Barbarita"
+                },
+                {
+                    plot: "¡Me comí el chocolate de alguien!",
+                    writer: "Josué"
+                },
+            ]
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Iterar a Través de un Arreglo de Objetos</title>
+</head>
+<body>
+<div class="container">
+    <h2>¡This is me!</h2>
+    <div>
+        <ul class="list-group">
+            <li class="list-group-item"
+                v-for="(value, key, index) in personalAttributes">
+                {{ index }}. {{ key }} = {{ value }}
+            </li>
+        </ul>
+    </div>
+    <pre>
+        {{ $data }}
+    </pre>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '.container',
+        data: {
+            personalAttributes: {
+                name: "Victor",
+                height: "1.64m",
+                weight: "78kg",
+                eyeColor: "browns",
+                favoriteFood: "Spicy Tongue"
+            }
+        }
+    })
+</script>
+</body>
+</html>
