@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Modificadores de evento - Calculadora</title>
+</head>
+<body>
+<div class="container">
+    <h1>Ingresa 2 números y escoge una operación.</h1>
+    <form class="form-inline">
+        <!-- Nota aquí que el modificador especial 'number'
+        es pasado para convertir el texto ingresado a números.-->
+        <input v-model.number="a" class="form-control">
+        <select v-model="operator" class="form-control">
+            <option>+</option>
+            <option>-</option>
+            <option>*</option>
+            <option>/</option>
+        </select>
+        <!-- Nota aquí que el modificador especial 'number'
+        es pasado para convertir el texto ingresado a números.-->
+        <input v-model.number="b" class="form-control">
+        <button type="submit" @click.prevent="calculate"
+                class="btn btn-primary">
+            Calcular
+        </button>
+    </form>
+    <h2>Resultado: {{a}} {{operator}} {{b}} = {{c}}</h2>
+    <pre>
+        {{ $data }}
+    </pre>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '.container',
+        data: {
+            a: 1,
+            b: 2,
+            c: null,
+            operator: "+"
+        },
+        methods: {
+            calculate: function (e) {
+                // e.preventDefault()
+                switch (this.operator) {
+                    case "+":
+                        this.c = this.a + this.b
+                        break;
+                    case "-":
+                        this.c = this.a - this.b
+                        break;
+                    case "*":
+                        this.c = this.a * this.b
+                        break;
+                    case "/":
+                        this.c = this.a / this.b
+                        break;
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

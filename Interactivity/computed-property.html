@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Propiedades Computadas</title>
+</head>
+<body>
+<div class="container">
+    <h1>Ingresa 2 números para calcular la suma.</h1>
+    <form class="form-inline">
+        <input v-model.number="a" class="form-control">
+        <select v-model="operator" class="form-control">
+            <option>+</option>
+            <option>-</option>
+            <option>*</option>
+            <option>/</option>
+        </select>
+        <input v-model.number="b" class="form-control">
+    </form>
+    <h2>Resultado: {{a}} {{ operator }} {{b}} = {{c}}</h2>
+    <pre>
+        {{ $data }}
+    </pre>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '.container',
+        data: {
+            a: 1,
+            b: 2,
+            operator: "+"
+        },
+        computed: {
+            // Un getter computado
+            c: function () {
+            // **`this`** hace referencia a la instancia de Vue
+                switch (this.operator) {
+                    case "+":
+                        return this.a + this.b
+                        break;
+                    case "-":
+                        return this.a - this.b
+                        break;
+                    case "*":
+                        return this.a * this.b
+                        break;
+                    case "/":
+                        return this.a / this.b
+                        break;
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

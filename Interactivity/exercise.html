@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Exercise Interactivity</title>
+</head>
+<body>
+<div class="container">
+   <h1>People of Vue</h1>
+    <ul class="list-group">
+        <li v-for="(candidate, index) in candidates" :key="index"
+            class="list-group-item">
+            {{ candidate.name }} {{ candidate.votes}}
+            <!-- increase votes 'on:click'-->
+            <button class="btn btn-secondary" @click="candidate.votes++">Vote</button>
+        </li>
+    </ul>
+    <!-- listening for keyboard event -->
+    <input @keyup.delete="clear" class="form-control" placeholder="press 'delete' to reset">
+    <!-- display the name of the 'mayor' using a computed property-->
+    <h2>Our mayor is {{mayor.name}}!</h2>
+    <pre>{{ $data }}</pre>
+    <pre>{{ mayor }}</pre>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '.container',
+        data: {
+            candidates: [
+                { name: "Mr. Black", votes: 140},
+                { name: "Mr. White", votes: 135},
+                { name: "Mr. Pink", votes: 145},
+                { name: "Mr. Brown", votes: 155},
+            ]
+        },
+        computed: {
+            mayor: function () {
+                //first we sort the array descending
+                let candidatesSorted = this.candidates.sort(function (a, b) {
+                    return b.votes - a.votes;
+                });
+                //the mayor will be the first item
+                return candidatesSorted[0];
+            }
+        },
+        methods: {
+            //this method runs when the key 'delete' is pressed
+            clear: function () {
+                //Turn votes of all candidate to 0 using map() function.
+                this.candidates = this.candidates.map(function (candidate) {
+                    candidate.votes = 0;
+                    return candidate;
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>
