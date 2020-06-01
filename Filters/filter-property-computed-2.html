@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Usando Propiedades Computadas con búsqueda</title>
+</head>
+<body>
+<div class="container">
+    <h1>¡Escuchemos algunas historias!</h1>
+    <div>
+        <h3>Historias de Alex</h3>
+        <ul class="list-group">
+            <li v-for="story in storiesBy('Alex')"
+                class="list-group-item">
+                {{ story.writer }} dijo "{{ story.plot }}"
+            </li>
+        </ul>
+        <h3>Historias de Jhon</h3>
+        <ul class="list-group">
+            <li v-for="story in storiesBy('John')"
+                class="list-group-item">
+                {{ story.writer }} dijo "{{ story.plot }}"
+            </li>
+        </ul>
+        <div class="form-group">
+            <label for="query">
+                ¿Qué estás buscando?
+            </label>
+            <input v-model="query" class="form-control">
+        </div>
+        <h3>Resultados de la búsqueda:</h3>
+        <ul class="list-group">
+            <li v-for="story in search"
+                class="list-group-item"
+            >
+                {{ story.writer }} dijo "{{ story.plot }}"
+            </li>
+        </ul>
+    </div>
+    <pre>
+        {{ $data }}
+    </pre>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '.container',
+        data: {
+            stories: [
+                {
+                    plot: "¡Estrellé mi auto hoy!",
+                    writer: "Alex"
+                },
+                {
+                    plot: "¡Ayer, alguien robó mi bolso!",
+                    writer: "John"
+                },
+                {
+                    plot: "Alguien se comió mi chocolate...",
+                    writer: "John"
+                },
+                {
+                    plot: "¡Me comí el chocolate de alguien!",
+                    writer: "Alex"
+                },
+            ],
+            query: ''
+        },
+        methods: {
+            // Un método que filtra las historias dependiendo del escritor
+            storiesBy: function (writer) {
+                return this.stories.filter(function (story) {
+                    return story.writer === writer
+                })
+            },
+        },
+        computed: {
+            search: function () {
+                let query = this.query
+                return this.stories.filter((story) => {
+                    return story.plot.includes(query)
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

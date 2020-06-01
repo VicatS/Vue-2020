@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Biblioteca de Utilidades - Lodash</title>
+</head>
+<body>
+<div class="container">
+    <h1>Let's hear some stories!</h1>
+    <ul class="list-group">
+        <li v-for="(story, index) in orderedStories" :key="index" class="list-group-item">
+            {{ story.writer }} said "{{ story.plot }}"
+            and upvoted {{ story.upvotes }} times.
+        </li>
+    </ul>
+    <hr>
+    <!-- Without using the computed property. -->
+    <ul class="list-group">
+        <li v-for="(story, index) in _.orderBy(stories, ['upvotes'], [order])" :key="index"
+            class="list-group-item">
+            {{ story.writer }} said "{{ story.plot }}"
+            and upvoted {{ story.upvotes }} times.
+        </li>
+    </ul>
+    <br>
+    <button class="btn btn-secondary" v-on:click="reverseOrder">Reverse Order</button>
+    <hr>
+    <pre>
+        {{ $data }}
+    </pre>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+<script>
+    new Vue({
+        el: '.container',
+        data: {
+            stories: [
+                {
+                    plot: "I crashed my car today!",
+                    writer: "Alex",
+                    upvotes: 28
+                },
+                {
+                    plot: "Yesterday, someone stole my bag!",
+                    writer: "John",
+                    upvotes: 8
+                },
+                {
+                    plot: "Someone ate my chocolate...",
+                    writer: "John",
+                    upvotes: 51
+                },
+                {
+                    plot: "I ate someone's chocolate!",
+                    writer: "Alex",
+                    upvotes: 74
+                },
+            ],
+            order: 'desc'
+        },
+        methods: {
+            reverseOrder: function () {
+                this.order = (this.order === 'desc') ? 'asc' : 'desc'
+            }
+        },
+        computed: {
+            orderedStories: function () {
+                let order = this.order
+                return _.orderBy(this.stories, 'upvotes', [order])
+            }
+        }
+    })
+</script>
+</body>
+</html>

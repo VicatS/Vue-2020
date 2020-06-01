@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Resultados ordenados</title>
+</head>
+<body>
+<div class="container">
+    <h1>¡Escuchemos algunas historias!</h1>
+    <ul class="list-group">
+        <li v-for="story in orderedStories"
+            class="list-group-item">
+            {{ story.writer }} dijo: "{{ story.plot }}"
+            {{ story.upvotes }} votos.
+        </li>
+    </ul>
+    <br>
+    <button @click="order = order * -1"
+            class="btn btn-primary">Invertir orden</button>
+    <hr>
+    <pre>
+        {{ $data }}
+    </pre>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '.container',
+        data: {
+            stories: [
+                {
+                    plot: "¡Estrellé mi auto hoy!",
+                    writer: "Alex",
+                    upvotes: 28
+                },
+                {
+                    plot: "¡Ayer, alguien robó mi bolso!",
+                    writer: "John",
+                    upvotes: 8
+                },
+                {
+                    plot: "Alguien se comió mi chocolate...",
+                    writer: "John",
+                    upvotes: 51
+                },
+                {
+                    plot: "¡Me comí el chocolate de alguien!",
+                    writer: "Alex",
+                    upvotes: 74
+                },
+            ],
+            order: -1
+        },
+        computed: {
+            orderedStories: function () {
+                let order = this.order
+                return this.stories.sort(function (a, b) {
+                    return (a.upvotes - b.upvotes) * order // ascendente
+                    // return (a.upvotes - b.upvotes) * -1 // descendente
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

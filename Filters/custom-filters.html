@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Filtros personalizados</title>
+</head>
+<body>
+<div class="container">
+    <h1>¡Identidades reales de superhéroes!</h1>
+    <ul class="list-group">
+        <li v-for="hero in heroes"
+            class="list-group-item"
+        >
+            {{ hero | snitch }}
+        </li>
+    </ul>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    Vue.filter('snitch', function (hero) {
+        return '¡' + hero.secretId + ' es '
+            + hero.firstname + ' '
+            + hero.lastname + ' en la vida real!'
+    })
+    new Vue({
+        el: '.container',
+        data: {
+            heroes: [
+                {
+                    firstname: 'Bruce',
+                    lastname: 'Wayne',
+                    secretId: 'Batman'
+                },
+                {
+                    firstname: 'Clark',
+                    lastname: 'Kent',
+                    secretId: 'Superman'
+                },
+                {
+                    firstname: 'Jay',
+                    lastname: 'Garrick',
+                    secretId: 'Flash'
+                },
+                {
+                    firstname: 'Peter',
+                    lastname: 'Parker',
+                    secretId: 'Spider-Man'
+                }
+            ]
+        },
+        methods: {
+            // Un método que filtra las historias dependiendo del escritor
+            storiesBy: function (writer) {
+                return this.stories.filter(function (story) {
+                    return story.writer === writer
+                })
+            },
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Usando Propiedades Computadas</title>
+</head>
+<body>
+<div class="container">
+    <h1>¡Escuchemos algunas historias famosas! ({{famous.length}})</h1>
+    <ul class="list-group">
+        <li v-for="story in famous"
+            class="list-group-item"
+        >
+            {{ story.writer }} dijo: "{{ story.plot }}"
+            {{ story.upvotes }} votos.
+        </li>
+    </ul>
+    <pre>
+        {{ $data }}
+    </pre>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '.container',
+        data: {
+            stories: [
+                {
+                    plot: "¡Estrellé mi auto hoy!",
+                    writer: "Alex",
+                    upvotes: 28
+                },
+                {
+                    plot: "¡Ayer, alguien robó mi bolso!",
+                    writer: "John",
+                    upvotes: 8
+                },
+                {
+                    plot: "Alguien se comió mi chocolate...",
+                    writer: "John",
+                    upvotes: 51
+                },
+                {
+                    plot: "¡Me comí el chocolate de alguien!",
+                    writer: "Alex",
+                    upvotes: 74
+                },
+            ]
+        },
+        computed: {
+            famous: function() {
+                return this.stories.filter(function(item){
+                    return item.upvotes > 25;
+                });
+            },
+        }
+    })
+</script>
+</body>
+</html>

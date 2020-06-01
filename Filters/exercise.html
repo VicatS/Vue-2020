@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Exercise</title>
+</head>
+<body>
+<div class="container">
+    <h1>People of Gaul</h1>
+    <ul class="list-group">
+<!--        <li v-for="(people, index) in _.orderBy(peoples, ['age'], [order])"-->
+        <li v-for="(people, index) in orderedPeople()"
+            class="list-group-item">
+            {{ people.name }} {{ people.age }}
+        </li>
+    </ul>
+
+    <h1>People  mayor of Gaul</h1>
+    <ul class="list-group">
+        <ul class="list-group">
+            <li v-for="(people, index) in old" :key="index"
+                class="list-group-item">
+                {{ people.name }} {{ people.age }}
+            </li>
+        </ul>
+    </ul>
+    <hr>
+    <pre>
+        {{ $data }}
+    </pre>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+<script>
+    new Vue({
+        el: '.container',
+        data: {
+            people: [
+                {
+                    name: "Virginia",
+                    age: 85
+                },
+                {
+                    name: "Victor",
+                    age: 31
+                },
+                {
+                    name: "Adriana",
+                    age: 53
+                },
+                {
+                    name: "Barbarita",
+                    age: 47
+                },
+                {
+                    name: "Walter",
+                    age: 25
+                },
+                {
+                    name: "Juana",
+                    age: 72
+                },
+                {
+                    name: "René",
+                    age: 68
+                },
+            ],
+            order: 'asc'
+        },
+        methods: {
+            orderedPeople: function () {
+                return _.orderBy(this.people, 'age')
+            }
+        },
+        computed: {
+            old: function() {
+                return this.people.filter(function(item){
+                    return item.age > 65;
+                });
+            },
+        }
+    })
+</script>
+</body>
+</html>
