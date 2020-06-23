@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Plantillas</title>
+</head>
+<body>
+<div class="container">
+   <story></story>
+
+</div>
+
+<template id="story-template">
+    <h1>¡Mi caballo es genial!</h1>
+</template>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    Vue.component('story', {
+        template: "#story-template"
+    })
+    new Vue({
+        el: '.container'
+    })
+</script>
+</body>
+</html>

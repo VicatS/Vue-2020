@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Plantillas</title>
+</head>
+<body>
+<div class="container">
+   <story v-bind:story="{plot:'Mi caballo es genial.', writer:'Mr. Weebl'}" >
+    </story>
+    <story v-bind:story="{plot:'Los narvales inventaron el Shish Kebab.', writer:'Mr. Weebl'}" >
+    </story>
+    <story v-bind:story="{plot:'El lado oscuro de la Fuerza es más fuerte.', writer:'Mr. Darth Vader'}" >
+    </story>
+
+</div>
+
+<template id="story-template">
+    <h1>{{ story.writer }} dijo "{{ story.plot }}"</h1>
+</template>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    Vue.component('story', {
+        props: ['story'],
+        template: "#story-template"
+    })
+    new Vue({
+        el: '.container'
+    })
+</script>
+</body>
+</html>
