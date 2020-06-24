@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <title>Emitir y escuchar</title>
+</head>
+<body>
+<div id="app" class="text-center">
+    <p style="font-size: 140px">
+        {{ votes }}
+    </p>
+    <button class="btn btn-primary" @click="vote">Votar</button>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#app',
+        data: {
+            votes: 0
+        },
+        methods: {
+            vote: function (writer) {
+                this.$emit('voted')
+            }
+        },
+        created() {
+            this.$on('voted', function (button) {
+                this.votes++
+            })
+        }
+    })
+</script>
+</body>
+</html>
