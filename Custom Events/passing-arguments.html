@@ -17,7 +17,14 @@
         <food @voted="countVote" name="Doble Bacon Burger"></food>
         <food @voted="countVote" name="Rodeo Burger"></food>
     </div>
+    <hr>
+    <h1>Registro:</h1>
+    <ul class="list-group">
+        <li class="list-group-item" v-for="vote in log"> {{ vote }} </li>
+    </ul>
+
 </div>
+
 
 <template id="food">
     <div class="text-center col-lg-4">
@@ -41,21 +48,22 @@
             }
         },
         methods: {
-            vote: function (event) {
-                console.log(event)
+            vote: function () {
                 this.votes++
-                this.$emit('voted')
+                this.$emit('voted', event["srcElement"].textContent)
             }
         }
     })
     new Vue({
         el: '#app',
         data: {
-            votes: 0
+            votes: 0,
+            log: []
         },
         methods: {
-            countVote: function () {
+            countVote: function (food) {
                 this.votes++
+                this.log.push(food + ' recibio un voto')
             }
         }
     })
