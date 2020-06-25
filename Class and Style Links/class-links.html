@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <title>Enlace de Clases</title>
+
+    <style type="text/css">
+        .red {
+            background: #ff0000;
+        }
+        .blue {
+            background: #0000ff;
+        }
+        .purple {
+            background: #7B1FA2;
+        }
+        .green {
+            background: #4CAF50;
+        }
+        .box {
+            float: left;
+            width: 200px;
+            height: 200px;
+            margin: 40px;
+            border: 1px solid rgba(0, 0, 0, .2);
+        }
+    </style>
+</head>
+<body>
+<div id="app" class="text-center">
+    <h1>Sintaxis de Objeto</h1>
+    <div class="box" v-bind:class="{ 'red' : color, 'blue' : !color }"></div>
+    <div class="box" v-bind:class="{ 'purple' : color, 'green' : !color }"></div>
+    <div class="box" v-bind:class="{ 'red' : color, 'blue' : !color }"></div>
+    <div class="box" v-bind:class="{ 'purple' : color, 'green' : !color }"></div>
+    <button v-on:click="flipColor" class="btn btn-block btn-success">
+        ¡Cambiar color!
+    </button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#app',
+        data: {
+            color: true
+        },
+        methods: {
+            flipColor: function() {
+                this.color = !this.color;
+            }
+        }
+    })
+</script>
+</body>
+</html>
