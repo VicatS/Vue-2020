@@ -31,11 +31,11 @@
 </head>
 <body>
 <div id="app" class="text-center">
-    <h1>Sintaxis de Objeto</h1>
-    <div class="box" v-bind:class="{ 'red' : color, 'blue' : !color }"></div>
-    <div class="box" v-bind:class="{ 'purple' : color, 'green' : !color }"></div>
-    <div class="box" v-bind:class="{ 'red' : color, 'blue' : !color }"></div>
-    <div class="box" v-bind:class="{ 'purple' : color, 'green' : !color }"></div>
+    <h1>Sintaxis de Arreglo</h1>
+    <div class="box" v-bind:class="[color ? 'red' : 'blue']"></div>
+    <div class="box" v-bind:class="[color ? 'purple' : 'green']"></div>
+    <div class="box" v-bind:class="[color ? 'red' : 'blue']"></div>
+    <div class="box" v-bind:class="[color ? 'purple' : 'green']"></div>
     <button v-on:click="flipColor" class="btn btn-block btn-success">
         ¡Cambiar color!
     </button>
