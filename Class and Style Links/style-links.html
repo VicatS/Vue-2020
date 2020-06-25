@@ -11,7 +11,7 @@
 <body>
 <div id="app" class="text-center">
 
-    <div :style="niceStyle">Such nice styles my Lord!</div>
+    <div :style="[niceStyle, badStyle]">Such nice styles my Lord!</div>
 
 </div>
 
@@ -23,6 +23,9 @@
             niceStyle: {
                 color: 'purple',
                 fontSize: '40px'
+            },
+            badStyle: {
+                fontStyle: 'italic'
             }
         }
     })
