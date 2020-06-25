@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>Back to stories</title>
+</head>
+<body>
+<div id="app">
+    <div class="container">
+        <h1>¡Escuchemos algunas historias!</h1>
+        <ul class="list-group">
+            <story v-for="(story, index) in stories"
+                   :key="index"
+                   :story="story"
+                   :favorite="favorite"
+                   @update="updateFavorite"
+            ></story>
+        </ul>
+        <pre>{{ $data }}</pre>
+    </div>
+</div>
+
+<template id="story-template">
+    <li class="list-group-item">
+        {{ story.writer }} dijo "{{ story.plot }}".
+        {{ story.upvotes }} votos.
+        <button v-show="!story.voted" @click="upvote"
+                class="btn btn-success">
+            Votar
+        </button>
+        <button v-show="!isFavorite" @click="markAsFavorite"
+                class="btn btn-primary">
+            Favorita
+        </button>
+        <span v-show="isFavorite"
+              class="fa fa-star pull-right" aria-hidden="true">
+        </span>
+    </li>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    Vue.component('story', {
+        template: "#story-template",
+        props: ['story', 'favorite'],
+        methods: {
+            upvote: function () {
+                this.story.upvotes += 1
+                this.story.voted = true
+            },
+            markAsFavorite: function () {
+                // 'update' is just the name of the custom event
+                // it could be anything. ex: fav-update
+                this.$emit('update', this.story)
+            },
+        },
+        computed: {
+            isFavorite: function () {
+                return this.story === this.favorite;
+            },
+        }
+    })
+
+    new Vue({
+        el: '#app',
+        data: {
+            stories: [
+                {
+                    plot: 'Mi caballo es genial.',
+                    writer: 'Mr. Weebl',
+                    upvotes: 28,
+                    voted: false
+                },
+                {
+                    plot: 'Los narvales inventaron el Shish Kebab.',
+                    writer: 'Mr. Weebl',
+                    upvotes: 8,
+                    voted: false
+                },
+                {
+                    plot: 'El lado oscuro de la Fuerza es más fuerte.',
+                    writer: 'Darth Vader',
+                    upvotes: 49,
+                    voted: false
+                },
+                {
+                    plot: 'Uno simplemente no camina hacia Mordor.',
+                    writer: 'Boromir',
+                    upvotes: 74,
+                    voted: false
+                },
+            ],
+            favorite: {}
+        },
+        methods: {
+            updateFavorite: function (story) {
+                this.favorite = story
+            }
+        }
+    })
+</script>
+</body>
+</html>
