@@ -1,0 +1,44 @@
+<!--<!DOCTYPE html>-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <title>Exercise</title>
+
+</head>
+<body>
+<div class="container" :style="bgColor">
+    <div class="centered">
+        <h1>Paint this background!</h1>
+        <input type="color" v-model="bgColor.backgroundColor" />
+    </div>
+</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '.container',
+        data: {
+            bgColor: {
+                backgroundColor: "#00cc00"
+            }
+        }
+    });
+</script>
+<style type="text/css">
+    .centered {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -100px;
+    }
+    .container {
+        width: 100%;
+        height: 100%
+    }
+</style>
+</html>
