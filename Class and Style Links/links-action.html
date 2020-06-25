@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <title>Enlace en Accion</title>
+
+    <style type="text/css">
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+
+</head>
+<body>
+<div id="app" class="text-center">
+    <ul>
+        <li :class="{'completed' : task.done}"
+            :style="styleObject"
+            v-for="task in tasks">
+            {{task.body}}
+            <button @click="completeTask(task)" class="btn">
+                ¡Solo hazlo!
+            </button>
+        </li>
+    </ul>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#app',
+        data: {
+            tasks: [
+                {body: "Alimentar a los caballos.", done: true},
+                {body: "Lavar armadura.", done: true},
+                {body: "Afilar espada.", done: false},
+            ],
+            styleObject: {
+                fontSize: '25px'
+            }
+        },
+        methods: {
+            completeTask: function (task) {
+                task.done = !task.done;
+            }
+        },
+    })
+</script>
+</body>
+</html>
